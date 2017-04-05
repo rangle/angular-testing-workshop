@@ -1,20 +1,19 @@
 import { ILoadable } from '../../../loading/interfaces/loadable/loadable';
 
 export interface ICustomizations {
-  colors: IColors,
-  toggles: IToggles
+  colors: IColors;
+  toggles: IToggles;
 }
 
 export interface IColors {
-  landingPageTitle: string
+  landingPageTitle: string;
 }
 
 export interface IToggles {
-  logo: boolean
+  logo: boolean;
 }
 
 export function isLogoEnabled(toggles: IToggles, loggedIn = false): boolean {
-  // START, remove conditional
   if (loggedIn) {
     return toggles.logo;
   }

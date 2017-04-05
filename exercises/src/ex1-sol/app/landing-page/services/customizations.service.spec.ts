@@ -5,9 +5,10 @@ import { ApiService } from '../../root/services/api';
 
 import { ICustomizations } from '../interfaces/customizations';
 
-describe('Customizations service', () => {
+fdescribe('Customizations service', () => {
+  let mockApiService;
   beforeEach(() => {
-    let mockApiService = {
+    mockApiService = {
       location: '',
       get: (path): Observable<ICustomizations> => Observable.of({
         colors: {
@@ -18,13 +19,14 @@ describe('Customizations service', () => {
         }
       })
     };
+
     TestBed.configureTestingModule({
       providers: [
         CustomizationsService,
         { provide: ApiService, useValue: mockApiService }
       ]
-    })
-  })
+    });
+  });
 
   it('should get data from /customizations endpoint',
     async(inject([CustomizationsService, ApiService],
@@ -49,7 +51,7 @@ describe('Customizations service', () => {
     async(inject([CustomizationsService], (customizationService: CustomizationsService) => {
       customizationService.getColors().subscribe(colors => {
         expect(colors).toEqual({ landingPageTitle: 'green' });
-      })
+      });
     }));
   });
 

@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 
 import { LandingContainerComponent } from './components';
+import { LandingTitleComponent } from './components';
 import { CustomizationsEffects } from './store/customizations/customizations.effects';
 import { CustomizationsService } from './services';
 
@@ -14,8 +15,13 @@ import { CustomizationsService } from './services';
     RouterModule,
     EffectsModule.run(CustomizationsEffects)
   ],
-  declarations: [LandingContainerComponent],
-  providers: [CustomizationsService]
+  declarations: [
+    LandingContainerComponent,
+    LandingTitleComponent
+  ],
+  providers: [
+    CustomizationsService
+  ]
 })
 export class LandingPageModule {
 }

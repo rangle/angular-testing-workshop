@@ -10,9 +10,7 @@ import { CusotmizationsStore } from '../../store/customizations/customizations.s
 export class LandingContainerComponent implements OnInit {
   public message = '🌈rainbows';
 
-  constructor(
-    private customizationsStore: CusotmizationsStore
-  ) { }
+  constructor() { }
 
   ngOnInit() {
   }
