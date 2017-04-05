@@ -2,21 +2,7 @@
 
 # Rangle.io
 
-Notes:
-- Angular + Unit Testing
-- Slack channel
-
----
-
-## Setup
-
-- Download code from the repo.
-
-Notes:
-
-- send link: https://drive.google.com/open?id=0Bwy32YPUV0oicFNtSDZuNFBRQkU
-
----
++++
 
 ## Unit Testing
 
@@ -35,12 +21,9 @@ Notes:
 
 ---
 
-## Angular Testing 😁 😡 😢
+## Setup
 
-Notes:
-- Slow, getting better, use Jest!
-- Advanced
-- Good: "isolated testing" is possible
+- Clone the repo.
 
 ---
 
@@ -79,42 +62,6 @@ Most important tests are for the business logic, which should be in functions.
 # Components
 
 ## How to test them
-
----
-
-## Using Static Methods
-
-### The Component
-
-```javascript
-@Component({
-  templateUrl: './myWidget.component.html',
-  selector: 'my-widget'
-})
-export default class MyWidget {
-  constructor() {}
-  static confirmationMessage() {
-    return 'Yup, that\'s fine!';
-  }
-}
-```
-
-+++
-
-
-## Using Static Methods
-
-### The Test
-
-```javascript
-// no need to create an instance of MyWidget
-describe('My Widget', () => {
-  it('returns confirmation message', () => {
-    expect(MyWidget.confirmationMessage()).toEqual('Yup, that\'s fine!');
-  });
-});
-
-```
 
 ---
 
@@ -160,7 +107,9 @@ describe('My Widget', () => {
 
 ## Angular TestBed
 
-TestBed helps when you have non-trivial logic in your template (`ngFor`s, `ngIfs`) and you want to make sure things are being rendered properly.
+TestBed helps when you have non-trivial logic in your template (`ngFor`s, `ngIfs`).
+
+TestBed also helps you provide any dependecies when testing components and services.
 
 TestBed "Configures and initializes the environment for unit testing and provides methods for creating components and services in unit tests." - Angular.io
 
@@ -324,7 +273,7 @@ Try different options and consider:
 
 ## Use Helpers That Wrap TestBed Utilities
 
-Example in the [ngrx example app](https://github.com/rangle/angular-ngrx-example/blob/master/src/app/test/test-component-support.class.ts). 
+Example in the [ngrx example app](https://github.com/rangle/angular-ngrx-example/blob/master/src/app/test/test-component-support.class.ts).
 
 ---
 

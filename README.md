@@ -1,9 +1,4 @@
-# angluar-testing-workshop
-
-write test
-  ➡ see test fail 
-    ➡ write code to make it pass 
-      ➡ refactor 
+# Angluar Testing Workshop
 
 ## View the slides
 
@@ -11,12 +6,6 @@ write test
 `npm install`
 `npm start`
 http://localhost:8081/
-
-### Draft guide
-
-* Basic TestBed: http://localhost:8081/#/9 (press ⬇️)
-* Async and FakeAsyc usage: http://localhost:8081/#/12
-* Component example: http://localhost:8081/#/15
 
 ## Resources
 
