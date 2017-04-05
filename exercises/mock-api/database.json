@@ -1,0 +1,13 @@
+{
+  "customizations": {
+    "toggles": {
+      "logo": true
+    },
+    "colors": {
+      "landingPageTitle": "#ff0066"
+    }
+  },
+  "user": {
+    "logged-in": true
+  }
+}

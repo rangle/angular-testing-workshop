@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  flex: 0;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+
+  app-spinner,
+  .okay {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  app-spinner {
+    flex-direction: row;
+  }
+
+  .okay {
+    flex-direction: column;
+  }
+}
