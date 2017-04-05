@@ -5,7 +5,7 @@ import { ApiService } from '../../root/services/api';
 
 import { ICustomizations } from '../interfaces/customizations';
 
-fdescribe('Customizations service', () => {
+describe('Customizations service', () => {
   let mockApiService;
   beforeEach(() => {
     mockApiService = {
@@ -28,25 +28,6 @@ fdescribe('Customizations service', () => {
     });
   });
 
-  it('should get data from /customizations endpoint',
-    async(inject([CustomizationsService, ApiService],
-      (customizationService: CustomizationsService, apiService: ApiService) => {
-        spyOn(apiService, 'get');
-        customizationService.getCustomizations();
-        expect(apiService.get).toHaveBeenCalledWith('/customizations');
-      })
-    )
-  );
-
-  it('should return an observable of the customizations',
-    async(inject([CustomizationsService], (customizationService: CustomizationsService) => {
-      customizationService.getCustomizations().subscribe(customizations => {
-        expect(customizations.colors.landingPageTitle).toEqual('green');
-        expect(customizations.toggles.logo).toEqual(true);
-      });
-    }))
-  );
-
   it('getColors should return an observable of color properties', () => {
     async(inject([CustomizationsService], (customizationService: CustomizationsService) => {
       customizationService.getColors().subscribe(colors => {
@@ -55,6 +36,16 @@ fdescribe('Customizations service', () => {
     }));
   });
 
+  it('should get colors from /customizations endpoint',
+    async(inject([CustomizationsService, ApiService],
+      (customizationService: CustomizationsService, apiService: ApiService) => {
+        spyOn(apiService, 'get').and.callThrough();
+        customizationService.getColors();
+        expect(apiService.get).toHaveBeenCalledWith('/customizations');
+      })
+    )
+  );
+
   it('getToggles should return an observable of toggle properties', () => {
     async(inject([CustomizationsService], (customizationService: CustomizationsService) => {
       customizationService.getToggles().subscribe(toggles => {
@@ -62,5 +53,15 @@ fdescribe('Customizations service', () => {
       })
     }));
   });
+
+  it('should get toggles from /customizations endpoint',
+    async(inject([CustomizationsService, ApiService],
+      (customizationService: CustomizationsService, apiService: ApiService) => {
+        spyOn(apiService, 'get').and.callThrough();
+        customizationService.getToggles();
+        expect(apiService.get).toHaveBeenCalledWith('/customizations');
+      })
+    )
+  );
 
 });

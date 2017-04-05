@@ -1,9 +1,15 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  Input
+} from '@angular/core';
 
 @Component({
-  template: 'dumb',
+  templateUrl: './landing-title.component.html',
   selector: 'app-landing-title'
 })
 export class LandingTitleComponent {
-
+  @Input() showIcon;
+  @Input() headingColor = 'black';
+  
+  constructor() { }
 }
