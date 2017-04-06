@@ -14,7 +14,7 @@ export interface IToggles {
   itJustRained: boolean;
 }
 
-export function isLogoEnabled(toggles: IToggles, loggedIn = false): boolean {
+export function isLogoEnabled(toggles: IToggles): boolean {
   if(toggles.itJustRained){
     return toggles.logo;
   }
