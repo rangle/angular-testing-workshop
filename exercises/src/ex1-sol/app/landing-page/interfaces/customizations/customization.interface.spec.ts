@@ -22,8 +22,6 @@ describe('ICustomizations', () => {
 
   describe('when user is logged out', () => {
 
-    // START REMOVE THESE TESTS
-
     it('should return false when asked if logo is enabled and logo is off', () => {
       let toggles: IToggles = {
         logo: false
