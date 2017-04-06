@@ -35,21 +35,9 @@
 
 - Logic often lives in our templates (in `*ngFor`s and in `*ngIf`s), so to test them we need help from TestBed, but first let's talk about TDD.
 
-+++
-
-### How To Insert an Emoji Into Your Angular App
-
-`control + command + spacebar`
-
-#🐎
-
 ---
 
-## TDD In Angular
-
-write test ➡ see test fail ➡ write code to make it pass ➡ refactor ➡ write next text
-
-+++
+## Business Logic
 
 Most important tests are for the business logic, which should be in functions.
 
@@ -61,11 +49,9 @@ Most important tests are for the business logic, which should be in functions.
 
 # Components
 
-## How to test them
-
 ---
 
-## Creating an Instance of the Class Without Angular's Help
+## Isolated Unit Tests
 
 ### The Component
 
@@ -84,7 +70,7 @@ export default class MyWidget() {
 
 +++
 
-## Creating an Instance without Angular
+## Creating an Instance
 
 ### The Test
 
@@ -340,15 +326,14 @@ Simplied exerpt from the [ngrx example app](https://github.com/mdegani/angular-n
 
 A simple landing page
 
-- As a product owner I want the rainbow logo to be feature-toggled based on a configuration that is received from the backend API.  It should show only when it is toggled on as a feature *and* it has just rained (see API spec).
-- As a marketing guru I want the color of the title to be determined by the configuration set on the backend and recieved from the API.
+- As a product owner I want the rainbow logo to be feature-toggled based on a configuration that is received from the backend API.
+- As a marketing person I want the color of the title to be determined by the configuration set on the backend and recieved from the API.
 
 ```json
 {
   "customizations": {
     "toggles": {
       "logo": true,
-      "it-just-rained": true
     },
     "colors": {
       "landingPageTitle": "#ff0066"
@@ -356,7 +341,6 @@ A simple landing page
   }
 }
 ```
-
 
 ---
 
@@ -398,78 +382,20 @@ Notes:
 
 ## Components that Depend on Other Components
 
-- Component stubs help us satisfy dependencies on other components while keeping our tests focused.
-- We can also do a shallow render to avoid having to declare custom components for our tests.
-- Or we can import the actual components
-- What problems might you encounter with each of the above approaches?
+* Component stubs help us satisfy dependencies on other components while keeping our tests focused.
+* We can also do a shallow render to avoid having to declare custom components for our tests.
+* Use `NO_ERRORS_SCHEMA` or `CUSTOME_ELEMENTS_SCHEMA`.
+* Or we can import the actual components
+* What problems might you encounter with each of the above approaches?
 
 Notes:
 - TODO: example like https://angular.io/docs/ts/latest/guide/testing.html#!#stub-component
 - Shallow rendering suppresses the errors that we often see in the console when we use a component in our Angular templates without including it in the `declarations` of our module.
 
----
-
-## Example 2. Testing a Component
-
-Create some tests and a component that will accept the configuration from the service and satisfy the AC.
-
-+++
-
-#### AC
-- As a product owner I want the rainbow logo to be feature-toggled based on a configuration that is received from the backend API.
-- As a marketing guru I want the color of the title to be determined by the configuration set on the backend and recieved from the API.
-- Bonus Story: As as logged in user, I should see the rainbow logo (only when the feature is enabled), but I should never see it when I am not logged in.
-
-+++
-
-- Test whether the `*ngIf` (show/hide) feature is working as expectd given the state of the component.
-- Test whether the feature is being toggled based on the server response.
-- Create a spy for an output
-- Try importing the actual module?  Does it work?
-- Is it worth trying to mock the required dependencies?
 
 ---
 
-## Exercise 2: Components with Rangle Testing Utilities
-
-* use the utilities to simplify the tests we wrote
-
-+++
-
-## Exercise 2b: Add a Component to the Template
-
-* Use `NO_ERRORS_SCHEMA` or `CUSTOME_ELEMENTS_SCHEMA`.
-* What problems could this cause?  Try mocking the required Angular component instead.
-
----
-
-## Sidenote: Look at Angular's Tests
-
-- Look at Angular's source for examples of tests, or type files for documentation.
-- Use Angular's own tests for ideas. For example, you can look at tests for `*ngIf` to get ideas on how to parts of the DOM that should or should not be there. https://github.com/angular/angular/blob/master/packages/common/test/directives/ng_if_spec.ts#L46. This tests show uses of debugElement _and_ nativeElement side-by-side.
-- We're not covering directives in this workshop, but the tests for `ngFor` are a good example [ngFor unit tests](https://github.com/angular/angular/blob/master/packages/common/test/directives/ng_for_spec.ts)
-
----
-
-## Example 3: Testing pure Pipes
+## Testing pure Pipes
 
 * To test a pipe, run assertions against its `transform` method. Ideally `transform` is a pure function.
 * Let's create a pipe that makes some text bold.
-
----
-
-## Example 4: TDD Pure Logic
-
-+++
-##The ngrx example application
-
-This example application shows best practices for building a modern Angular application using a redux-style architecture.s
-- It groups configurations with relevant objects. For example, if you delete a component's directory, you'll be deleting it's routing configuration automatically.
-- It demonstrates use of ngrx effects and integrating a REST api with ngrx (redux).
-- Updated to Angular 4.
-- Demonstrates a variety of testing scenarios because the applcation contains different types of Angular elements including components with inputs and outputs and services that depend on Http.
-
-Notes:
-- https://github.com/rangle/angular-ngrx-example
-- **Architecture - Refactoring - Unit Testing** are all related and connected to each other.
-- Take the time to explore this application. The exercise app in this workshop is based on a simplified version of it. 
