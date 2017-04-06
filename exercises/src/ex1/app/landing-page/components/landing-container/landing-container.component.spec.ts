@@ -16,39 +16,29 @@ describe('the logo container', () => {
     beforeEach(() => {
 
       TestBed.configureTestingModule({
-        declarations: [
-          LandingContainerComponent,
-          LandingTitleComponent
-        ],
-        providers: [
-          {
-            provide: CustomizationsService,
-            useValue: mockApiServiceLogo
-          }
-        ]
+        // ngModule stuff is missing
       });
 
       fixture = TestBed.createComponent(LandingContainerComponent);
-      comp = fixture.componentInstance;
+      // comp =    // get the compnent instance from fixture
       el = fixture.debugElement.query(By.css('h3')).nativeElement;
 
     });
 
-    it('should render the title component and show Rainbows text', () => {
-      // hint, let the Testing Module know about the real LandingTitleComponent,
-      // or create a mock of that component and declare that
-      expect(el.innerText).toContain('Rainbows');
-    });
+    // it('should render the title component and show Rainbows text', () => {
+    //   // let the Testing Module know about the real LandingTitleComponent,
+    //   // or create a mock of that component and declare that
+    //   expect(el.innerText).toContain('Rainbows');
+    // });
 
-    it('should set the heading color based on customizations service', () => {
-      fixture.detectChanges();
-      expect(el.style.color).toEqual('red');
-    });
+    // it('should set the heading color based on customizations service', () => {
+    //   fixture.detectChanges();
+    //   expect(el.style.color).toEqual('red');
+    // });
 
-    it('should show the logo', () => {
-      fixture.detectChanges();
-      expect(fixture.debugElement.query(By.css('span'))).toBeTruthy();
-    });
+    // it('should show the logo', () => {
+    //   // use the debugElement as above to get the span
+    // });
   });
 
   describe('when logo is toggled off', () => {
@@ -70,10 +60,10 @@ describe('the logo container', () => {
       el = fixture.debugElement.query(By.css('h3')).nativeElement;
     });
 
-    it('should hide the logo', () => {
-      fixture.detectChanges();
-      expect(fixture.debugElement.query(By.css('span'))).toBeFalsy();
-    });;
+    // it('should hide the logo', () => {
+    //   fixture.detectChanges();
+    //   expect(fixture.debugElement.query(By.css('span'))).toBeFalsy();
+    // });;
   });
 });
 

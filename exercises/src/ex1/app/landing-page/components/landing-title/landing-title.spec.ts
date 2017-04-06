@@ -21,43 +21,33 @@ describe('the landing title component', () => {
 
   describe('the rainbow icon', () => {
     let rainbowEl;
-    it('should now show the icon when showIcon is falsy', () => {
+    it('should not show the icon when showIcon is falsy', () => {
       comp.showIcon = null;
       fixture.detectChanges();
       rainbowEl = el.querySelector('span');
       expect(rainbowEl).toBeFalsy();
     });
 
-    it('should hide icon when showIcon is false', () => {
-      comp.showIcon = false;
-      fixture.detectChanges();
-      rainbowEl = el.querySelector('span');
-      expect(rainbowEl).toBeFalsy();
-    });
+    // it('should hide icon when showIcon is false', () => {
+    //   // the relevant property to false here
+    //   // run change detection
+    //   // check that the span doesn't exist
+    // });
 
-    it('should show the icon when showIcon is true', () => {
-      comp.showIcon = true;
-      fixture.detectChanges();
-      rainbowEl = el.querySelector('span');
-      expect(rainbowEl.innerText).toContain('🌈');
-    });
+    // it('should show the icon when showIcon is true', () => {
+    // });
 
   });
 
   describe('the heading color', () => {
     let headingEl;
-    it('should be set to black when landingPageTitleColor is not set', () => {
-      fixture.detectChanges();
-      headingEl = el.querySelector('h3');
-      expect(headingEl.style.color).toEqual('black');
-    });
+    // it('should be set to black when landingPageTitleColor is not set', () => {
+    //   // run change detection
+    //   // get the element using a querySelector and then assertion on headingEl.style.color
+    // });
 
-    it('should be set to green when landingPageTitleColor is green', () => {
-      comp.headingColor = 'green';
-      fixture.detectChanges();
-      headingEl = el.querySelector('h3');
-      expect(headingEl.style.color).toEqual('green');
-    });
+    // it('should be set to green when landingPageTitleColor is green', () => {
+    // });
 
   });
 

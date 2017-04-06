@@ -21,7 +21,7 @@ describe('the landing title component', () => {
 
   describe('the rainbow icon', () => {
     let rainbowEl;
-    it('should now show the icon when showIcon is falsy', () => {
+    it('should not show the icon when showIcon is falsy', () => {
       comp.showIcon = null;
       fixture.detectChanges();
       rainbowEl = el.querySelector('span');

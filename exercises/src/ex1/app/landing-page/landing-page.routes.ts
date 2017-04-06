@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { LandingContainerComponent } from './components';
+import { LandingContainerComponent, LiveCodeComponent } from './components';
 
 export const landingPageRoutes: Routes = [
   {
@@ -11,6 +11,12 @@ export const landingPageRoutes: Routes = [
   {
     path: 'landingPage',
     component: LandingContainerComponent,
+    children: [
+    ]
+  },
+  {
+    path: 'livecode',
+    component: LiveCodeComponent,
     children: [
     ]
   }

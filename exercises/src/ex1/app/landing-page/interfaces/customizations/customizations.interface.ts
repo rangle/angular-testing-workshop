@@ -14,6 +14,8 @@ export interface IToggles {
   itJustRained: boolean;
 }
 
+
+// what if this was the business logic instead?
 export function isLogoEnabled(toggles: IToggles): boolean {
   if(toggles.itJustRained){
     return toggles.logo;

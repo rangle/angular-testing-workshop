@@ -35,8 +35,6 @@ describe('the logo container', () => {
     });
 
     it('should render the title component and show Rainbows text', () => {
-      // hint, let the Testing Module know about the real LandingTitleComponent,
-      // or create a mock of that component and declare that
       expect(el.innerText).toContain('Rainbows');
     });
 
