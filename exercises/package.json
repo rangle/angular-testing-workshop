@@ -5,16 +5,11 @@
   "scripts": {
     "ng": "ng",
     "start": "concurrently \"npm run mock-api\" \"ng serve --app ex1-sol\"",
-    "ex1": "concurrently \"npm run mock-api\" \"ng serve --app ex1\"",
     "ex1-sol": "concurrently \"npm run mock-api\" \"ng serve --app ex1-sol\"",
     "mock-api": "json-server ./mock-api/database.json",
-    "build": "ng build",
-    "test": "ng test --app ex1",
-    "test-ex1": "ng test --app ex1",
     "test-ex1-sol": "ng test --app ex1-sol",
     "lint": "ng lint",
-    "e2e": "ng e2e --app ex1",
-    "yarn": "yarn"
+    "e2e": "ng e2e --app ex1"
   },
   "private": true,
   "dependencies": {

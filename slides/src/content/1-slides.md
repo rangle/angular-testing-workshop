@@ -340,35 +340,23 @@ Simplied exerpt from the [ngrx example app](https://github.com/mdegani/angular-n
 
 A simple landing page
 
-- As a product owner I want the rainbow logo to be feature-toggled based on a configuration that is received from the backend API.
+- As a product owner I want the rainbow logo to be feature-toggled based on a configuration that is received from the backend API.  It should show only when it is toggled on as a feature *and* it has just rained (see API spec).
 - As a marketing guru I want the color of the title to be determined by the configuration set on the backend and recieved from the API.
-- Bonus Story: As as logged in user, I should see the rainbow logo (only when the feature is enabled), but I should never see it when I am not logged in.
-
----
-
-## Exercise 1. Create Tests for a Service
-
-Create some tests and a service for the landing page configuration.
-
-**Create a service that will give a component a colour and a feature flag for a CTA.**
-
-Assume that `ApiService.getConfig()` returns an observable with the following data from our API:
 
 ```json
 {
   "customizations": {
     "toggles": {
-      "logo": true
+      "logo": true,
+      "it-just-rained": true
     },
     "colors": {
       "landingPageTitle": "#ff0066"
     }
-  },
-  "user": {
-    "logged-in": true
   }
 }
 ```
+
 
 ---
 

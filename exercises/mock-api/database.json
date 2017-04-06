@@ -1,13 +1,11 @@
 {
   "customizations": {
     "toggles": {
-      "logo": true
+      "logo": true,
+      "it-just-rained": true
     },
     "colors": {
       "landingPageTitle": "#ff0066"
     }
-  },
-  "user": {
-    "logged-in": true
   }
 }

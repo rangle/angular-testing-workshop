@@ -11,23 +11,13 @@ export interface IColors {
 
 export interface IToggles {
   logo: boolean;
+  itJustRained: boolean;
 }
 
 export function isLogoEnabled(toggles: IToggles, loggedIn = false): boolean {
-  if (loggedIn) {
+  if(toggles.itJustRained){
     return toggles.logo;
   }
   return false;
-}
-
-export function createDefaultCustomizations(): ICustomizations {
-  return {
-    colors: {
-      landingPageTitle: 'black'
-    },
-    toggles: {
-      logo: false
-    }
-  };
 }
 
