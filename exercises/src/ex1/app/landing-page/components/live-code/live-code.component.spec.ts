@@ -1,17 +1,18 @@
-import { TestBed } from '@angular/core/testing';
-import { LiveCodeComponent } from './';
+// import { TestBed, ComponentFixture } from '@angular/core/testing';
 
-describe('live-code-componetn', () => {
-  let comp: LiveCodeComponent;
-  let el: HTMLElement;
+// fdescribe('live-code-componetn', () => {
+//   let fixture: ComponentFixture<LiveCodeComponent>;
+//   let comp: LiveCodeComponent;
+//   let el;  // type HTMLElement
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [LiveCodeComponent],
-    });
-  });
+//   beforeEach(() => {
+//     TestBed.configureTestingModule({
+//       declarations: [
+//       ],
+//     });
+//   });
 
-  it('should do something...', () => {
+//   it('should say hello world', () => {
+//   });
 
-  });
-});
+// });
