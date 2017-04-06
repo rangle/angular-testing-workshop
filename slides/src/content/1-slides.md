@@ -317,8 +317,8 @@ Notes:
 ## Zone Resources
 
 * Julie Ralph's conference talks:
-  * **ng-conf 2016 from May 2016** (caution, `TestComponentBuilder` has since been removed from Angular!)
-  * **AngularConnect talk from October 2016**
+  * **[ng-conf 2016 from May 2016](https://www.youtube.com/watch?v=DltUEDy7ItY)** (caution, `TestComponentBuilder` has since been removed from Angular!)
+  * **[AngularConnect talk from October 2016](https://www.youtube.com/watch?v=f493Xf0F2yU)**
 * **Rangle Gitbook** - https://angular-2-training-book.rangle.io/handout/zones/
 
 +++
