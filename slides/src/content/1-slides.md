@@ -47,13 +47,13 @@ Most important tests are for the business logic, which should be in functions.
 
 ---
 
-# Components
+# Pipes and Component Logic
 
 ---
 
 ## Isolated Unit Tests
 
-### The Component
+### The Class
 
 ```javascript
 @Component({
@@ -88,6 +88,16 @@ describe('My Widget', () => {
   });
 });
 ```
+
++++
+
+## Pipe Test
+
+Testing a pipe is similar.
+
+---
+
+# Components With Templates
 
 ---
 
@@ -251,15 +261,35 @@ Try different options and consider:
 
 ---
 
-## Testing Components in a Host Component
+## The Example App
 
-* You can configure the TestBed to declare a host component that in turn renders the component you want to test.
+A simple landing page
+
+- As a product owner I want the rainbow logo to be feature-toggled based on a configuration that is received from the backend API.
+- As a marketing person I want the color of the title to be determined by the configuration set on the backend and recieved from the API.
+
+```json
+{
+  "customizations": {
+    "toggles": {
+      "logo": true,
+    },
+    "colors": {
+      "landingPageTitle": "#ff0066"
+    }
+  }
+}
+```
 
 ---
 
 ## Use Helpers That Wrap TestBed Utilities
 
 Example in the [ngrx example app](https://github.com/rangle/angular-ngrx-example/blob/master/src/app/test/test-component-support.class.ts).
+
+---
+
+# Services
 
 ---
 
@@ -322,29 +352,7 @@ Simplied exerpt from the [ngrx example app](https://github.com/mdegani/angular-n
 
 ---
 
-## The Example App
-
-A simple landing page
-
-- As a product owner I want the rainbow logo to be feature-toggled based on a configuration that is received from the backend API.
-- As a marketing person I want the color of the title to be determined by the configuration set on the backend and recieved from the API.
-
-```json
-{
-  "customizations": {
-    "toggles": {
-      "logo": true,
-    },
-    "colors": {
-      "landingPageTitle": "#ff0066"
-    }
-  }
-}
-```
-
----
-
-## Testing a Component
+## Appendix: More Component Tests
 
 Here is an example of a test for an Angular component.
 
@@ -380,7 +388,7 @@ Notes:
 
 +++
 
-## Components that Depend on Other Components
+## Appendix: Components that Depend on Other Components
 
 * Component stubs help us satisfy dependencies on other components while keeping our tests focused.
 * We can also do a shallow render to avoid having to declare custom components for our tests.
@@ -392,10 +400,3 @@ Notes:
 - TODO: example like https://angular.io/docs/ts/latest/guide/testing.html#!#stub-component
 - Shallow rendering suppresses the errors that we often see in the console when we use a component in our Angular templates without including it in the `declarations` of our module.
 
-
----
-
-## Testing pure Pipes
-
-* To test a pipe, run assertions against its `transform` method. Ideally `transform` is a pure function.
-* Let's create a pipe that makes some text bold.
