@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"npm run mock-api\" \"ng serve --app ex1\"",
+    "start": "concurrently \"npm run mock-api\" \"ng serve --app ex1-sol\"",
     "ex1": "concurrently \"npm run mock-api\" \"ng serve --app ex1\"",
     "ex1-sol": "concurrently \"npm run mock-api\" \"ng serve --app ex1-sol\"",
     "mock-api": "json-server ./mock-api/database.json",

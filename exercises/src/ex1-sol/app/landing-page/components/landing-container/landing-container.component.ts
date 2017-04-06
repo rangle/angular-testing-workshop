@@ -2,17 +2,20 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-import { CusotmizationsStore } from '../../store/customizations/customizations.store';
+import { CustomizationsService } from '../../services';
+import 'rxjs/add/operator/map';
 
 @Component({
   templateUrl: './landing-container.template.html'
 })
-export class LandingContainerComponent implements OnInit {
-  public message = '🌈rainbows';
+export class LandingContainerComponent {
+  public landingPageColor;
+  public showIcon;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(public customizationsService: CustomizationsService) {
+    this.landingPageColor = customizationsService.getColors()
+      .map(colors => colors.landingPageTitle);
+    this.showIcon = customizationsService.getToggles()
+      .map(toggles => toggles.logo);
   }
-
 }

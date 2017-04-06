@@ -33,7 +33,7 @@ import { ApiService } from './services';
   ],
   providers: [
     ApiService,
-    CusotmizationsStore,
+    CusotmizationsStore
   ],
   bootstrap: [RootComponent]
 })
