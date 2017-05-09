@@ -32,8 +32,7 @@
 - *Services* are classes
 - *Pipes* are classes with a transform method
 - *Components* are classes that angular combines with templates
-
-- Logic often lives in our templates (in `*ngFor`s and in `*ngIf`s), so to test them we need help from TestBed, but first let's talk about TDD.
+  - Logic often lives in our templates (in `*ngFor`s and in `*ngIf`s), so to test them we need help from TestBed, but first let's talk about TDD.
 
 ---
 
@@ -41,17 +40,18 @@
 
 Most important tests are for the business logic, which should be in functions.
 
-- TDD helps you define the shape of your objects and names for your functions.
 - Put interfaces and associated functions all in one place.
 - See the [ngrx example app](https://github.com/rangle/angular-ngrx-example/blob/master/src/app/video-games/interfaces/video-game/video-game.interface.spec.ts)
 
 ---
 
-# Pipes and Component Logic
+# Isolated Unit Tests
+
+Testing without the use of `TestBed`.
 
 ---
 
-## Isolated Unit Tests
+## Example
 
 ### The Class
 
@@ -70,7 +70,7 @@ export default class MyWidget() {
 
 +++
 
-## Creating an Instance
+## Example
 
 ### The Test
 
@@ -91,23 +91,69 @@ describe('My Widget', () => {
 
 +++
 
-## Pipe Test
+## Exercise 1
 
-Testing a pipe is similar.
+### Pipe Test
+
+Write a test for the Capitalize pipe.
 
 ---
 
-# Components With Templates
+# Dependency Injection and Mocking
+
+---
+
+## Dependency Injection in Angular
+
+- Angular has an injector that takes care of DI for us.
+- We can provide dependencies in our tests
+
++++
+
+## Exercise 2
+
+### Service Test
+
+Write a test for the ToDoService. Mock the dependency and provide and instance of it to the constructor of the service.
+
++++
+
+## Exercise 3
+
+### Testing a Service that Depends on Http
+
+Write a test for ApiService. Provide a light mock for the Http service.
+
++++
+
+## Exercise 4
+
+### Testing Logic in a Component
+
+- Let's practice TDD 😊
+- Story: "As a user, I want to be able to see the number of to do's on the main page".
+- Technical plan: create a method on the component class that returns an observable of the number of to do's.
+- Let's not worry about whether or not Angular can show this number -- let's just **test the method**.
+
+---
+
+# Integration Testing with Testbed
 
 ---
 
 ## Angular TestBed
 
-TestBed helps when you have non-trivial logic in your template (`ngFor`s, `ngIfs`).
+- TestBed is a class that creates a real Angular runtime for the purposes of testing Angular elements
+- It is helpful when:
+  - you have logic in your templates and you want to render a component class along with its template for testing (`ngFor`s, `ngIfs`)
+  - you want to use Angular's injector to handle dependency injection for you
+  - you want to test how different elements integrate in the Angular runtime
 
-TestBed also helps you provide any dependecies when testing components and services.
+- We do not instantiate the class we want to test when using TestBed
+  - We let Angular do that for us
 
-TestBed "Configures and initializes the environment for unit testing and provides methods for creating components and services in unit tests." - Angular.io
+- Using the test fixture, Angular will give us the instance it created
+
 
 +++
 
@@ -146,10 +192,13 @@ Notes:
 
 MyComponent
 
+- `NO_ERRORS_SCHEMA` tells Angular to shallow-render this component.
+
 ```javascript
 @Component({
   template: '<h3>{{greeting}}</h3>',
   selector: 'my-component'
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class MyComponent {
   private greeting = '';
@@ -230,11 +279,10 @@ TestBed.configureTestingModule({
 ```
 
 * `MyFeatureModule` will declare the component and provide the real `EssentialService`.
-* If `EssentialService` depends on `Http`, you will have to provide it.
 * If you decide to add additional providers here, they will override those provided by `MyFeatureMoule`.
+* If `EssentialService` depends on `Http`, you will have to override it or use Angular's [mockBackend](https://angular.io/docs/ts/latest/api/http/testing/index/MockBackend-class.html) to override the Angular service that expects to be able to make HTTP requests.
 
 +++
-
 
 ## Angular TestBed
 
@@ -261,35 +309,10 @@ Try different options and consider:
 
 ---
 
-## The Example App
-
-A simple landing page
-
-- As a product owner I want the rainbow logo to be feature-toggled based on a configuration that is received from the backend API.
-- As a marketing person I want the color of the title to be determined by the configuration set on the backend and recieved from the API.
-
-```json
-{
-  "customizations": {
-    "toggles": {
-      "logo": true,
-    },
-    "colors": {
-      "landingPageTitle": "#ff0066"
-    }
-  }
-}
-```
-
----
-
 ## Use Helpers That Wrap TestBed Utilities
 
 Example in the [ngrx example app](https://github.com/rangle/angular-ngrx-example/blob/master/src/app/test/test-component-support.class.ts).
 
----
-
-# Services
 
 ---
 
@@ -337,66 +360,19 @@ it('should...', async(() => {
 
 ## FakeAsync and tick
 
-```javascript
-it('should debounce change to search query for 300 ms', fakeAsync(() => {
-  spyOn(comp.queryChanged, 'emit');
-  comp.onChange('abc');
-  tick(100);
-  expect(comp.queryChanged.emit).not.toHaveBeenCalled();
-  tick(200);
-  expect(comp.queryChanged.emit).toHaveBeenCalledWith('abc');
-}));
-```
-
-Simplied exerpt from the [ngrx example app](https://github.com/mdegani/angular-ngrx-example/blob/unit-test/src/app/video-games/listing/components/video-game-search/video-game-search.component.ts).
-
----
-
-## Appendix: More Component Tests
-
-Here is an example of a test for an Angular component.
-
-```javascript
-describe('MyComponent', () => {
-  let comp: MyComponent;
-  let fixture: ComponentFixture<MyComponent>;
-  let de: DebugElement;
-  let el: HTMLElement;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [MyComponent]
-    });
-    fixture = TestBed.createComponent(MyComponent);
-    comp = fixture.componentInstance;
-    de = fixture.debugElement.query(By.css('.confirmation'));
-    el = de.nativeElement;
-  });
-
-  it('should show confirmation message', async(() => {
-    comp.getConfirmation();
-    fixture.detectChanges();
-    expect(el.textContent).toContain('Yup, that\'s fine!');
-  }));
-});
-```
-
-Notes:
-- *concepts*: Angular Testing Utilities: `TestBed.configureTestingModule`, `compileComponents()`, `TestBed.createComponent` (fixture), `fixture.componentInstance` (component instance), `fixture.detectChanges()`, `async`.
-- *concepts*: Spying on outputs.
-- Docs show subscribing to an output: `src/app/dashboard/dashboard-hero.component.spec.ts`.
+- Use `FakeAsync` as you would use `Async`.
+- When you use `FakeAsync` you can control the passage of time by calling `tick()`.
 
 +++
 
-## Appendix: Components that Depend on Other Components
+## Exercise 5
 
-* Component stubs help us satisfy dependencies on other components while keeping our tests focused.
-* We can also do a shallow render to avoid having to declare custom components for our tests.
-* Use `NO_ERRORS_SCHEMA` or `CUSTOME_ELEMENTS_SCHEMA`.
-* Or we can import the actual components
-* What problems might you encounter with each of the above approaches?
+- Write a test checks that the list properly filtered.
 
-Notes:
-- TODO: example like https://angular.io/docs/ts/latest/guide/testing.html#!#stub-component
-- Shallow rendering suppresses the errors that we often see in the console when we use a component in our Angular templates without including it in the `declarations` of our module.
++++
+
+## Exercise 6
+
+- Write a test to make the search input is properly debounced.
+
 
