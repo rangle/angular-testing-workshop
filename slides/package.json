@@ -24,7 +24,7 @@
     "webpack-dev-server": "2.1.0-beta.0"
   },
   "dependencies": {
-    "highlight.js": "9.6.0",
+    "highlight.js": "9.18.1",
     "reveal.js": "3.3.0"
   }
 }
